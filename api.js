@@ -5,19 +5,27 @@ var router = express.Router();
 //var User = mongoose.model('User');
 
 
-for(var name in mongoose.models) {
-	
-	var model = mongoose.models[name];
+for (var name in mongoose.models) {
 
-	console.log(model.modelName);
+    var model = mongoose.models[name];
 
-}
+    var Model = mongoose.model(model.modelName);
 
-router.get('/user', function(req, res) {
+    router.get('/' + model.collection.name, function(req, res) {
 
-        res.json(true);
+		Model.find(req.body).exec(function (err, data) {
+	        
+	        res.json(data);
 
-    }).get(function(res, res) {
+		})
+
+    }).get('/' + model.collection.name + '/:id', function(res, res) {
+
+		// Model.findOne().exec(function (err, data) {
+	        
+	 //        res.json(data);
+
+		// })
 
     }).post(function(res, res) {
 
@@ -26,5 +34,8 @@ router.get('/user', function(req, res) {
     }).delete(function(res, res) {
 
     });
+
+}
+
 
 module.exports = router;
