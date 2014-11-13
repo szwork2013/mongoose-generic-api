@@ -1,0 +1,24 @@
+{
+  "name": "mongoose-generic-api",
+  "version": "0.0.0",
+  "description": "mongoose-generic-api\r ====================",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/responso/mongoose-generic-api.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/responso/mongoose-generic-api/issues"
+  },
+  "homepage": "https://github.com/responso/mongoose-generic-api",
+  "dependencies": {
+    "body-parser": "^1.9.2",
+    "express": "^4.10.2",
+    "mongoose": "^3.8.19"
+  }
+}
