@@ -4,6 +4,7 @@ var mongoose = require('mongoose'),
 
 for (var name in mongoose.models) {
 
+
     var model = mongoose.models[name];
     var Model = mongoose.model(model.modelName);
 
@@ -13,9 +14,13 @@ for (var name in mongoose.models) {
     	update = require('./update')(Model),
     	del = require('./delete')(Model);
 
+    console.log('Creating API for ' + model.collection.name);
+
     router
-        .get('/' + model.collection.name, find.request)
-        .post(create.request);
+        .get('/' + model.collection.name, find.request);
+        
+    router
+        .post('/' + model.collection.name, create.request);
 
     router
         .get('/' + model.collection.name + '/:id', findOne.request)

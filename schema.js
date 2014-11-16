@@ -5,11 +5,23 @@ var Schema = mongoose.Schema;
 // -- USER --------------------
 // ----------------------------
 var userSchema = new Schema({
-	username: { type: String },
-	email: { type: String },
-	password: { type: String },
-	role: [{ type: Schema.Types.ObjectId, ref: 'Role' }],
-	hourUsage: { type: Number, default: 0 }
+    username: {
+        type: String
+    },
+    email: {
+        type: String
+    },
+    password: {
+        type: String
+    },
+    role: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Role'
+    }],
+    hourUsage: {
+        type: Number,
+        default: 0
+    }
 });
 
 var User = mongoose.model('User', userSchema);
@@ -18,7 +30,17 @@ var User = mongoose.model('User', userSchema);
 // -- ROLE --------------------
 // ----------------------------
 var roleSchema = new Schema({
-	name: { type: String }
+    name: {
+        type: String
+    }
 });
 
 var Role = mongoose.model('Role', roleSchema);
+
+
+var testSchema = new Schema({
+    title: String,
+    description: String
+});
+
+testModel = mongoose.model('Test', testSchema);

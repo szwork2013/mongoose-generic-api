@@ -35,6 +35,8 @@
     "gulp-uglify": "^0.3.0",
     "gulp-util": "^3.0.1",
     "gulp-watch": "^0.6.4",
+    "mocha": "^2.0.1",
+    "request": "^2.48.0",
     "tiny-lr": "0.0.7"
   }
 }
