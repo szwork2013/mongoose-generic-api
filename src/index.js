@@ -1,0 +1,29 @@
+var mongoose = require('mongoose'),
+    express = require('express'),
+    router = express.Router();
+
+for (var name in mongoose.models) {
+
+    var model = mongoose.models[name];
+    var Model = mongoose.model(model.modelName);
+
+    var find = require('./find')(Model),
+    	findOne = require('./findOne')(Model),
+    	create = require('./create')(Model),
+    	update = require('./update')(Model),
+    	del = require('./delete')(Model);
+
+    router
+        .get('/' + model.collection.name, find.request)
+        .post(create.request);
+
+    router
+        .get('/' + model.collection.name + '/:id', findOne.request)
+        .put(update.request)
+        .delete(del.request);
+
+
+}
+
+
+module.exports = router;

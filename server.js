@@ -14,7 +14,8 @@ app.get('/', function (req, res) {
 	res.send('test');
 });
 
-var apiRouter = require('./api');
+var apiRouter = require('./src/index');
+	
 app.use('/api/1/', apiRouter);
 
 app.listen(3000, function () {
