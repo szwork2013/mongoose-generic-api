@@ -16,16 +16,11 @@ for (var name in mongoose.models) {
 
     console.log('Creating API for ' + model.collection.name);
 
-    router
-        .get('/' + model.collection.name, find.request);
-        
-    router
-        .post('/' + model.collection.name, create.request);
-
-    router
-        .get('/' + model.collection.name + '/:id', findOne.request)
-        .put(update.request)
-        .delete(del.request);
+    router.get('/' + model.collection.name, find.request);
+    router.post('/' + model.collection.name, create.request);
+    router.get('/' + model.collection.name + '/:id', findOne.request);
+    router.put('/' + model.collection.name + '/:id', update.request)
+    router.delete('/' + model.collection.name + '/:id', del.request);
 
 
 }
