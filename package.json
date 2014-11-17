@@ -1,8 +1,8 @@
 {
   "name": "mongoose-generic-api",
   "version": "0.0.0",
-  "description": "mongoose-generic-api\r ====================",
-  "main": "index.js",
+  "description": "mongoose-generic-api",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

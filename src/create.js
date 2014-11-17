@@ -8,10 +8,6 @@ module.exports = function (Model) {
 
 		request: function (req, res, next) {
 			
-			console.log('Create request');
-			console.log(req.body);
-			console.log('req.body');
-
 			Model.create(req.body, function (err, model) {
 				
 				res.json(model);

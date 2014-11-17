@@ -12,26 +12,32 @@ var testModelId = '';
 var testModelObject;
 
 
+
+// returning data model for test
+// -----------------------------------
 var getTestModelObject = function() {
     return {
         date: new Date(),
-        title: 'title',
-        description: 'description'
+        name: 'name',
+        number: 18
     }
 };
 
 before(function(done) {
 
+
+    // 
+    // -----------------------------------
     var testSchema = new Schema({
         date: {
             type: Date,
             required: true
         },
-        title: String,
-        description: String
+        name: String,
+        number: Number
     });
 
-	testModelObject = getTestModelObject();
+    testModelObject = getTestModelObject();
 
     testModel = mongoose.model('Test', testSchema);
 
@@ -61,7 +67,7 @@ before(function(done) {
 describe('Testing API', function() {
 
     it('Creating model', function(done) {
-    	
+
 
         request.post({
             url: 'http://localhost:3000/api/tests',
@@ -70,8 +76,8 @@ describe('Testing API', function() {
 
             assert.equal(err, null);
             assert.equal(httpResponse.statusCode, 200);
-            assert.equal(body.title, testModelObject.title);
-            assert.equal(body.description, testModelObject.description);
+            assert.equal(body.name, testModelObject.name);
+            assert.equal(body.number, testModelObject.number);
 
             testModelId = body._id;
 
@@ -86,18 +92,18 @@ describe('Testing API', function() {
 
     });
 
-    it('Getting model', function(done) {
-    	
+    it('Getting single model', function(done) {
+
         request.get({
             uri: 'http://localhost:3000/api/tests/' + testModelId
         }, function(err, httpResponse, body) {
 
-        	body = JSON.parse(body);
+            body = JSON.parse(body);
 
             assert.equal(err, null);
             assert.equal(httpResponse.statusCode, 200);
-            assert.equal(body.title, testModelObject.title);
-            assert.equal(body.description, testModelObject.description);
+            assert.equal(body.name, testModelObject.name);
+            assert.equal(body.number, testModelObject.number);
 
             done();
 
@@ -107,26 +113,33 @@ describe('Testing API', function() {
 
     it('Updating model', function(done) {
 
+        testModelObject.name = 'name-update';
+        testModelObject.number = 19;
+
         request.put({
             uri: 'http://localhost:3000/api/tests/' + testModelId,
             json: testModelObject
         }, function(err, httpResponse, body) {
 
-        	console.log(arguments);
-
-        	body = JSON.parse(body);
-
-            assert.equal(err, null);
             assert.equal(httpResponse.statusCode, 200);
-            assert.equal(body.title, testModelObject.title);
-            assert.equal(body.description, testModelObject.description);
 
-            done();
+            request.get({
+                uri: 'http://localhost:3000/api/tests/' + testModelId
+            }, function(err, httpResponse, body) {
+
+                body = JSON.parse(body);
+
+                assert.equal(err, null);
+                assert.equal(httpResponse.statusCode, 200);
+                assert.equal(body.name, testModelObject.name);
+                assert.equal(body.number, testModelObject.number);
+
+                done();
+
+            });
 
         });
 
     });
-
-
 
 });
