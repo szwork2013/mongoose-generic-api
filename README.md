@@ -3,20 +3,19 @@
 Automatically creates Express.js RESTful API service by Mongoose.js schemas and generates Angularjs resource classes with validations and UI views of details and editing.
 
 ### Version
-1.0.0
+0.1.0
 
 ### Tech
 
-Dillinger uses a number of open source projects to work properly:
+The project uses a number of open source projects to work properly:
 
-* [AngularJS] - HTML enhanced for web apps!
-* [Twitter Bootstrap] - great UI boilerplate for modern web apps
 * [node.js] - evented I/O for the backend
 * [Express] - fast node.js network app framework [@tjholowaychuk]
 * [Gulp] - the streaming build system
-* [jQuery] - duh
+* [AngularJS] - HTML enhanced for web apps!
 
 ### Installation
+First you need to download and install [node.js].
 
 You need Gulp installed globally:
 
@@ -27,26 +26,23 @@ $ npm i -g gulp
 ```sh
 $ git clone http://github.com/responso/mongoose-generic-api.git
 $ npm i
-$ gulp
 ```
-
-
 
 ### Development
 
 Open your favorite Terminal and run these commands.
 
-First Tab:
 ```sh
-$ node app
+$ gulp
 ```
 
-Second Tab:
+### Tests
+Server API tests
 ```sh
-$ gulp watch
+$ mocha
 ```
 
-(optional) Third:
+Client tests
 ```sh
 $ karma start
 ```
@@ -60,8 +56,6 @@ License
 
 MIT
 
-
-**Free Software, Hell Yeah!**
 
 [node.js]:http://nodejs.org
 [Twitter Bootstrap]:http://twitter.github.com/bootstrap/
