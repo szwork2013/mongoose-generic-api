@@ -1,0 +1,1 @@
+"use strict";angular.module("mongooseGenericApi",[]).controller("mainCtrl",["$scope",function(e){e.appName2="mongooseGenericApi"}]);
