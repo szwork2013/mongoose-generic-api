@@ -1,78 +1,28 @@
+var gulp = require('gulp');
+var uglify = require('gulp-uglify');
+var concat = require('gulp-concat');
 
-var gulp = require('gulp'),
-		watch = require('gulp-watch'),
-		less = require('gulp-less'),
-		concat = require('gulp-concat'),
-		uglify = require('gulp-uglify'),
-		rename = require('gulp-rename'),
-		imagemin = require('gulp-imagemin'),
-		prefix = require('gulp-autoprefixer'),
-		livereload = require('gulp-livereload'),
-		connectLivereload = require('connect-livereload'),
-		git = require('gulp-git'),
-		express = require('express');
+var appName = 'mongooseGenericApi';
 
-var serverPort = process.env.DEVSERVER_PORT || 7000;
-var livereloadPort = process.env.LIVERELOAD_PORT || 35730;
-
-var paths = {
-	scripts: ['app/assets/scripts/*.js'],
-	images: ['app/assets/images/**/*.{svg,png,jpg}'],
-	styles: ['app/assets/styles/*.scss'],
-	html: 	['app/*.html']
+var versions = {
+	app: 'v0.0.1',
+	script: 'v0.0.1',
+	style: 'v0.0.1'
 };
 
-gulp.task('scripts', function () {
-	return gulp.src(paths.scripts)
-			.pipe(concat('main.js'))
-			.pipe(rename({suffix: '.min'}))
+var paths = new function(){
+	this.app = ['./app/'];
+	this.scripts = [this.app + 'scripts/**/*.js'];
+	this.styles  = [this.app + 'styles/**/*.less'];
+	this.dest = {
+		script: this.app + 'dest',
+		style: this.app + 'dest'
+	};
+};
+
+gulp.task('scripts',function(){
+	gulp.src(paths.scripts)
 			.pipe(uglify())
-			.pipe(gulp.dest('app/assets/build'));
+			.pipe(concat('min.'+appName+'.'+versions.script+'.js'))
+			.pipe(gulp.dest(paths.dest.script));
 });
-
-
-gulp.task('less', function () {
-	gulp.src(paths.styles)
-			.pipe(less())
-			.pipe(prefix())
-			.pipe(gulp.dest('styles'))
-});
-
-gulp.task('imagemin', function () {
-	gulp.src(paths.images)
-			.pipe(imagemin())
-			.pipe(gulp.dest('images'));
-});
-
-gulp.task('serve', ['less'], function () {
-	var server = express();
-	server.use(connectLivereload({
-		port: livereloadPort
-	}));
-	server.use(express.static('.'));
-	server.listen(serverPort);
-});
-
-gulp.task('watch', function () {
-	var lrserver = livereload(livereloadPort);
-
-	gulp.watch(paths.scripts, ['scripts']);
-
-	gulp.src(paths.styles)
-			.pipe(watch())
-			.pipe(less())
-			.pipe(prefix())
-			.pipe(gulp.dest('styles'))
-			.pipe(lrserver);
-
-	gulp.src([].concat(paths.images, paths.html))
-			.pipe(watch())
-			.pipe(lrserver);
-});
-
-gulp.task('publish', function () {
-	git.push('origin', 'master:gh-pages')
-			.end();
-});
-
-gulp.task('default', ['scripts', 'serve', 'watch']);

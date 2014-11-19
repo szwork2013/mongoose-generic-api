@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Mongoose Generic API
 
 Automatically creates Express.js RESTful API service by Mongoose.js schemas and generates Angularjs resource classes with validations and UI views of details and editing.
@@ -69,3 +70,12 @@ MIT
 [express]:http://expressjs.com
 [AngularJS]:http://angularjs.org
 [Gulp]:http://gulpjs.com
+=======
+mongoose-generic-api
+====================
+
+Install:
+
+1.Run:
+    nmp install
+>>>>>>> FETCH_HEAD
