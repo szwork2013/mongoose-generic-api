@@ -1,6 +1,6 @@
 # Mongoose Generic API
 
-Automatically creates Express.js RESTful API service by Mongoose.js schemas and generates Angularjs resource classes with validations and UI views of details and editing.
+Automatically creates Express.js RESTful API service by[Mongoose] schemas and generates Angularjs resource classes with validations and UI views of details and editing.
 
 ### Version
 0.1.0
@@ -59,6 +59,7 @@ MIT
 
 [node.js]:http://nodejs.org
 [Twitter Bootstrap]:http://twitter.github.com/bootstrap/
+[Mongoose]:http://mongoosejs.com/
 [jQuery]:http://jquery.com
 [express]:http://expressjs.com
 [AngularJS]:http://angularjs.org
