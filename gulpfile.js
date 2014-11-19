@@ -15,14 +15,14 @@ var paths = new function(){
 	this.scripts = [this.app + 'scripts/**/*.js'];
 	this.styles  = [this.app + 'styles/**/*.less'];
 	this.dest = {
-		script: this.app + 'dest/script',
-		style: this.app + 'dest/style'
+		script: this.app + 'dest',
+		style: this.app + 'dest'
 	};
 };
 
 gulp.task('scripts',function(){
-	gulp.src('paths.scripts')
+	gulp.src(paths.scripts)
 			.pipe(uglify())
 			.pipe(concat('min.'+appName+'.'+versions.script+'.js'))
-			.pipe(gulp.dest(paths.dist.script));
+			.pipe(gulp.dest(paths.dest.script));
 });
