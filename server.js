@@ -15,10 +15,10 @@ app.get('/', function (req, res) {
 	res.send('test');
 });
 
-var apiRouter = require('./src/index');
+var apiRouter = require('./lib/index');
 	
 app.use('/api/', apiRouter);
 
 app.listen(3000, function () {
 	console.log('Server started');
-})
+});
