@@ -10,7 +10,8 @@ Automatically creates Express.js RESTful API service by[Mongoose] schemas and ge
 The project uses a number of open source projects to work properly:
 
 * [node.js] - evented I/O for the backend
-* [Express] - fast node.js network app framework [@tjholowaychuk]
+* [Express] - fast node.js network app framework
+* [Mongoose] - elegant mongodb object modeling for node.js
 * [Gulp] - the streaming build system
 * [AngularJS] - HTML enhanced for web apps!
 
@@ -24,13 +25,12 @@ $ npm i -g gulp
 ```
 
 ```sh
-$ git clone http://github.com/responso/mongoose-generic-api.git
 $ npm i
 ```
 
 ### Development
 
-Open your favorite Terminal and run these commands.
+Open Terminal and run these commands.
 
 ```sh
 $ gulp
