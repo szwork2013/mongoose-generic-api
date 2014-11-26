@@ -1,25 +1,23 @@
 /******************
  * Gulp Dependencies
  ******************/
-
+var path = require('path'); // Path
 var gulp = require('gulp'); // Gulp
-var server = require('gulp-develop-server'); // Run Node Server
-var connect = require('gulp-connect'); // Live Reload & Watch index.html
 var less = require('gulp-less'); // Less
 var autoprefixer = require('gulp-autoprefixer'); // Scc Prefixer
 var plumber = require('gulp-plumber'); // Like Compass
 var uglify = require('gulp-uglify'); // Uglify Js File
 var concat = require('gulp-concat'); // Concat Files
-
-
-
+var templateCache = require('gulp-angular-templatecache'); // Angular Template Cache
+var nodemon = require('gulp-nodemon'); // Run Node Server
+var connect = require('gulp-connect'); // Live Reload & Watch index.html
 
 
 
 /******************
  * Statics
  ******************/
-var appName = 'mongooseGenericApi';
+var appName = 'mongoose-generic-api';
 
 var versions = {
     app: 'v0.0.1',
@@ -27,100 +25,79 @@ var versions = {
     style: 'v0.0.1'
 };
 
-var paths = new function() {
+var src = new function() {
     this.app = ['./app/'];
-    this.server = ['./server.js'];
-    this.scripts = [this.app + 'scripts/**/*.js'];
-    this.vendors = ['./bower_components/'];
-    this.styles = [this.app + 'styles/**/*.less'];
-    this.html = [this.app + '**/*.html'];
-    this.dest = {
-        script: this.app + 'dest',
-        style: this.app + 'dest'
-    };
+    this.server = './server.js';
+    this.scripts = [this.app + 'scripts/*.js'];
+    this.vendors = [
+        './bower_components/jquery/dist/jquery.js',
+        './bower_components/bootstrap/dist/js/bootstrap.js',
+        './bower_components/angular/angular.js',
+        './bower_components/angular-route/angular-route.js',
+        './bower_components/angular-resource/angular-resource.js'
+    ];
+    this.style = [this.app + 'styles/style.less'];
+    this.styles = [this.app + 'styles/*.less'];
+    this.templates = [this.app + 'templates/*.html'];
+    this.dest = this.app + 'dist';
 };
-
-
-
-
-/******************
- * Connect
- ******************/
-
-gulp.task('connect', function() {
-    connect.server({
-        root: paths.app,
-        livereload: true
-    });
-});
 
 
 
 /******************
  * Scripts ( JS )
  ******************/
-
 gulp.task('scripts', function() {
-    gulp.src(paths.scripts)
+    gulp.src(src.scripts)
         .pipe(plumber())
-        .pipe(uglify())
-        .pipe(concat('min.' + appName + '.' + versions.script + '.js'))
-        .pipe(gulp.dest(paths.dest.script))
+        //.pipe(uglify())
+        .pipe(concat('app.js'))
+        .pipe(gulp.dest(src.dest))
         .pipe(connect.reload());
 });
+
 
 
 /******************
  * Concat Bower-Components ( JS )
  ******************/
-
 gulp.task('vendors', function() {
-    gulp.src([paths.vendors + 'angular/angular.js'])
+    gulp.src(src.vendors)
         .pipe(plumber())
-        .pipe(concat('min.vendors.js'))
-        .pipe(gulp.dest(paths.dest.script))
+        .pipe(concat('vendors.js'))
+        .pipe(gulp.dest(src.dest))
         .pipe(connect.reload());
 });
+
 
 
 /******************
  * Styles ( LESS )
  ******************/
 gulp.task('styles', function() {
-    gulp.src(paths.styles)
+    gulp.src(src.style)
         .pipe(plumber())
         .pipe(less())
         .pipe(autoprefixer({
             browsers: ['last 2 versions'],
             cascade: false
         }))
-        .pipe(gulp.dest(paths.dest.style))
+        .pipe(gulp.dest(src.dest))
         .pipe(connect.reload());
 });
+
+
 
 /******************
  * Html
  ******************/
-gulp.task('html', function() {
-    gulp.src(paths.html)
-        .pipe(connect.reload());
-});
-
-
-
-
-
-/******************
- * Node Server
- ******************/
-gulp.task('server:start', function() {
-    server.listen({
-        path: paths.server
-    });
-});
-
-gulp.task('server:restart', function() {
-    gulp.watch([paths.server], server.restart());
+gulp.task('templates', function() {
+    gulp.src(src.templates)
+        .pipe(templateCache('templates.js', {
+            module: 'app'
+        }))
+        .pipe(gulp.dest(src.dest))
+        .pipe(connect.reload())
 });
 
 
@@ -129,15 +106,45 @@ gulp.task('server:restart', function() {
  * Gulp Watch
  ******************/
 gulp.task('watch', function() {
-    gulp.watch([paths.scripts], ['scripts']);
-    gulp.watch([paths.vendors], ['vendors']);
-    gulp.watch([paths.styles], ['styles']);
-    gulp.watch([paths.html], ['html']);
-
+    gulp.watch('gulpfile.js', ['vendors']);
+    gulp.watch([src.scripts], ['scripts']);
+    gulp.watch([src.styles], ['styles']);
+    gulp.watch([src.templates], ['templates']);
 });
 
 
 /******************
+ * Connect
+ ******************/
+gulp.task('connect', function() {
+    connect.server({
+        root: src.app,
+        livereload: true
+    });
+});
+
+// /******************
+//  * Node Server
+//  ******************/
+// gulp.task('server:start', function() {
+//     server.listen({
+//         path: src.server
+//     });
+// });
+
+// gulp.task('server:restart', function() {
+//     gulp.watch([src.server], server.restart);
+// });
+
+gulp.task('develop', function () {
+  nodemon({ script: 'server.js', ext: 'html js' })
+    .on('change', [])
+    .on('restart', function () {
+      console.log('restarted!')
+    })
+})
+
+/******************
  * Gulp Default
  ******************/
-gulp.task('default', ['connect', 'watch']);
+gulp.task('default', ['scripts', 'styles', 'vendors', 'templates', 'connect', 'develop', 'watch']);

@@ -1,0 +1,19 @@
+<div class="container">
+	
+	<h1 class="capitalize">
+		{{title}}
+		<a href="#/generic/{{collection}}/add" class="btn btn-success btn-sm pull-right">Add</a>
+	</h1>
+	<table class="table">
+		<thead>
+			<tr>
+				<th class="capitalize" ng-repeat="path in paths">{{path.path}}</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="model in models" id="{{entity._id}}">
+				<td ng-repeat="path in paths"><a href="#/generic/{{::collection}}/{{::model._id}}">{{model[path.path]}}</a></td>	
+			</tr>
+		</tbody>
+	</table>
+</div>

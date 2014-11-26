@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+<head lang="en">
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+
+    <!--All Styles-->
+    <link rel="stylesheet" href="dist/style.css">
+    
+    <!--All Styles-->
+    <script> window.schema = {{{schema}}}; </script>
+</head>
+
+<body>
+
+    <div ng-include="'navbar.html'"></div>
+
+	<div ng-view></div>
+
+    <!--Vendors-->
+    <script src="dist/vendors.js"></script>
+    <!--App Files-->
+    <script src="dist/app.js"></script>
+    <!--Templates-->
+    <script src="dist/templates.js"></script>
+
+</body>
+
+</html>

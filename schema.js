@@ -5,6 +5,7 @@ var Schema = mongoose.Schema;
 // -- USER --------------------
 // ----------------------------
 var userSchema = new Schema({
+
     username: {
         type: String
     },
@@ -12,7 +13,8 @@ var userSchema = new Schema({
         type: String
     },
     password: {
-        type: String
+        type: String,
+        private: true
     },
     role: [{
         type: Schema.Types.ObjectId,
@@ -22,6 +24,7 @@ var userSchema = new Schema({
         type: Number,
         default: 0
     }
+
 });
 
 var User = mongoose.model('User', userSchema);
@@ -37,10 +40,3 @@ var roleSchema = new Schema({
 
 var Role = mongoose.model('Role', roleSchema);
 
-
-var testSchema = new Schema({
-    title: String,
-    description: String
-});
-
-testModel = mongoose.model('Test', testSchema);
