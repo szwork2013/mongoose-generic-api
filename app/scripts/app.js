@@ -34,7 +34,9 @@ angular.forEach(window.schema.models, function(model) {
     // Creating resourse
     app.factory(model.name, ['$resource',
         function($resource) {
-            return $resource(window.schema.url + model.collection + '/:id', null, {
+            return $resource(window.schema.url + model.collection + '/:id', {
+                id: '@_id'
+            }, {
                 'get': {
                     method: 'GET'
                 },
@@ -42,7 +44,10 @@ angular.forEach(window.schema.models, function(model) {
                     method: 'POST'
                 },
                 'update': {
-                    method: 'PUT'
+                    method: 'PUT',
+                    params: {
+                        id: "@_id"
+                    }
                 },
                 'query': {
                     method: 'GET',
@@ -72,8 +77,8 @@ angular.forEach(window.schema.models, function(model) {
     ]);
 
     // Creating item controller
-    app.controller(model.collection + 'ModelController', ['$scope', '$route', model.name,
-        function($scope, $route, Model) {
+    app.controller(model.collection + 'ModelController', ['$scope', '$route', '$location', model.name,
+        function($scope, $route, $location, Model) {
 
             var id = $route.current.params.id;
 
@@ -88,15 +93,20 @@ angular.forEach(window.schema.models, function(model) {
                 $scope.model = Model.get({
                     id: id
                 });
+                $scope.title = model.name;
             }
 
             $scope.submit = function(argument) {
+                
                 if ($scope.isAdd) {
                     $scope.model.$save();
                 } else {
                     $scope.model.$update();
                 }
-                
+
+                $location.path('/generic/' + model.collection);
+
+
             }
 
         }
