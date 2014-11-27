@@ -163,8 +163,7 @@ describe('Testing API', function() {
     it('Deleteng model', function(done) {
 
         request.del({
-            uri: url + '/' + testModelId,
-            json: testObject
+            uri: url + '/' + testModelId
         }, function(err, httpResponse, body) {
 
             assert.equal(httpResponse.statusCode, 200);
