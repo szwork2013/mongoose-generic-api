@@ -97,15 +97,16 @@ angular.forEach(window.schema.models, function(model) {
             }
 
             $scope.submit = function(argument) {
-                
+
                 if ($scope.isAdd) {
-                    $scope.model.$save();
+                    $scope.model.$save(function () {
+                        $location.path('/generic/' + model.collection);
+                    });
                 } else {
-                    $scope.model.$update();
+                    $scope.model.$update(function () {
+                        $location.path('/generic/' + model.collection);
+                    });
                 }
-
-                $location.path('/generic/' + model.collection);
-
 
             }
 

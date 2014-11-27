@@ -17,14 +17,17 @@ app.engine('html', hbs.__express);
 app.use(express.static(__dirname + '/app'));
 app.use(bodyParser.json());
 
-
 var apiRouter = require('./lib/index');
 app.use('/api/', apiRouter);
 	
 app.get('/', function (req, res) {
+
 	res.render('index.html', {
+
 		schema: JSON.stringify(apiRouter.schema)
+		
 	});
+
 });
 
 

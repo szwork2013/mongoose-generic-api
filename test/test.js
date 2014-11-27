@@ -160,4 +160,28 @@ describe('Testing API', function() {
 
     });
 
+    it('Deleteng model', function(done) {
+
+        request.del({
+            uri: url + '/' + testModelId,
+            json: testObject
+        }, function(err, httpResponse, body) {
+
+            assert.equal(httpResponse.statusCode, 200);
+
+            request.get({
+                uri: url + '/' + testModelId
+            }, function(err, httpResponse, body) {
+
+                assert.equal(body, 'null');
+                assert.equal(err, null);
+                assert.equal(httpResponse.statusCode, 200);
+
+                done();
+
+            });
+
+        });
+    });
+
 });
