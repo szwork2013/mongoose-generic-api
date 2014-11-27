@@ -18,6 +18,7 @@
   "homepage": "https://github.com/responso/mongoose-generic-api",
   "dependencies": {
     "body-parser": "^1.9.2",
+    "crypto": "0.0.3",
     "express": "^4.10.2",
     "hbs": "^2.7.0",
     "mongoose": "^3.8.19",

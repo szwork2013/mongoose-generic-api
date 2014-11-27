@@ -141,6 +141,7 @@ gulp.task('develop', function () {
     .on('change', [])
     .on('restart', function () {
       console.log('restarted!')
+      connect.reload();
     })
 })
 

@@ -7,7 +7,10 @@ var path = require('path');
 
 mongoose.connect('mongodb://localhost:27017/database-name');
 
-require('./schema');
+
+require("fs").readdirSync(path.join(__dirname, "schema")).forEach(function(file) {
+  require("./schema/" + file);
+});
 
 hbs.registerPartials(__dirname + '/views');
 
