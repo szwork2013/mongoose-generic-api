@@ -18,7 +18,7 @@ First you need to download and install [node.js].
 
 
 ```sh	
-$ npm i
+$ npm install mongoose-generic-api
 ```
 
 ### Tests
