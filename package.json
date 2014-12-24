@@ -1,6 +1,6 @@
 {
   "name": "mongoose-generic-api",
-  "version": "0.0.1",
+  "version": "0.0.10",
   "description": "mongoose-generic-api",
   "main": "server.js",
   "scripts": {
@@ -10,7 +10,7 @@
     "type": "git",
     "url": "https://github.com/responso/mongoose-generic-api.git"
   },
-  "author": "",
+  "author": "Pavel Rapoport <pavel@responso.io>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/responso/mongoose-generic-api/issues"

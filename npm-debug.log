@@ -1,0 +1,74 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'publish' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.32
+4 verbose publish [ '.' ]
+5 verbose cache add [ '.', null ]
+6 verbose cache add name=undefined spec="." args=[".",null]
+7 verbose parsed url { protocol: null,
+7 verbose parsed url   slashes: null,
+7 verbose parsed url   auth: null,
+7 verbose parsed url   host: null,
+7 verbose parsed url   port: null,
+7 verbose parsed url   hostname: null,
+7 verbose parsed url   hash: null,
+7 verbose parsed url   search: null,
+7 verbose parsed url   query: null,
+7 verbose parsed url   pathname: '.',
+7 verbose parsed url   path: '.',
+7 verbose parsed url   href: '.' }
+8 silly lockFile 3a52ce78- .
+9 verbose lock . /Users/pavelrapoport/.npm/3a52ce78-.lock
+10 verbose tar pack [ '/Users/pavelrapoport/.npm/mongoose-generic-api/0.0.1/package.tgz',
+10 verbose tar pack   '.' ]
+11 verbose tarball /Users/pavelrapoport/.npm/mongoose-generic-api/0.0.1/package.tgz
+12 verbose folder .
+13 info prepublish mongoose-generic-api@0.0.1
+14 silly lockFile 1f1177db-tar tar://.
+15 verbose lock tar://. /Users/pavelrapoport/.npm/1f1177db-tar.lock
+16 silly lockFile 82b75bf1-se-generic-api-0-0-1-package-tgz tar:///Users/pavelrapoport/.npm/mongoose-generic-api/0.0.1/package.tgz
+17 verbose lock tar:///Users/pavelrapoport/.npm/mongoose-generic-api/0.0.1/package.tgz /Users/pavelrapoport/.npm/82b75bf1-se-generic-api-0-0-1-package-tgz.lock
+18 silly lockFile 1f1177db-tar tar://.
+19 silly lockFile 1f1177db-tar tar://.
+20 silly lockFile 82b75bf1-se-generic-api-0-0-1-package-tgz tar:///Users/pavelrapoport/.npm/mongoose-generic-api/0.0.1/package.tgz
+21 silly lockFile 82b75bf1-se-generic-api-0-0-1-package-tgz tar:///Users/pavelrapoport/.npm/mongoose-generic-api/0.0.1/package.tgz
+22 silly lockFile cf58fcdb-ngoose-generic-api-0-0-1-package /Users/pavelrapoport/.npm/mongoose-generic-api/0.0.1/package
+23 verbose lock /Users/pavelrapoport/.npm/mongoose-generic-api/0.0.1/package /Users/pavelrapoport/.npm/cf58fcdb-ngoose-generic-api-0-0-1-package.lock
+24 silly lockFile cf58fcdb-ngoose-generic-api-0-0-1-package /Users/pavelrapoport/.npm/mongoose-generic-api/0.0.1/package
+25 silly lockFile cf58fcdb-ngoose-generic-api-0-0-1-package /Users/pavelrapoport/.npm/mongoose-generic-api/0.0.1/package
+26 silly lockFile 3a52ce78- .
+27 silly lockFile 3a52ce78- .
+28 silly publish { name: 'mongoose-generic-api',
+28 silly publish   version: '0.0.1',
+28 silly publish   description: 'mongoose-generic-api',
+28 silly publish   main: 'server.js',
+28 silly publish   scripts: { test: 'echo "Error: no test specified" && exit 1' },
+28 silly publish   repository:
+28 silly publish    { type: 'git',
+28 silly publish      url: 'https://github.com/responso/mongoose-generic-api.git' },
+28 silly publish   author: { name: 'Pavel Rapoport', email: 'pavel@responso.io' },
+28 silly publish   license: 'ISC',
+28 silly publish   bugs: { url: 'https://github.com/responso/mongoose-generic-api/issues' },
+28 silly publish   homepage: 'https://github.com/responso/mongoose-generic-api',
+28 silly publish   dependencies:
+28 silly publish    { 'body-parser': '^1.9.2',
+28 silly publish      crypto: '0.0.3',
+28 silly publish      express: '^4.10.2',
+28 silly publish      mongoose: '^3.9.7',
+28 silly publish      underscore: '^1.7.0' },
+28 silly publish   devDependencies: { mocha: '^2.0.1', request: '^2.48.0' },
+28 silly publish   readme: '# Mongoose Generic API\n\nAutomatically creates [Express] RESTful API service by [Mongoose] schemas and generates.\n\n### Version\n0.0.1\n\n### Tech\n\nThe project uses a number of open source projects to work properly:\n\n* [node.js] - evented I/O for the backend\n* [Express] - fast node.js network app framework\n* [Mongoose] - elegant mongodb object modeling for node.js\n\n### Installation\nFirst you need to download and install [node.js].\n\nYou need Gulp installed globally:\n\n```sh\n$ npm i -g gulp\n```\n\n```sh\n$ npm i\n```\n\n### Tests\nServer API tests\n```sh\n$ mocha\n```\n\n### Todo\'s\n\n - Write Tests\n\nLicense\n----\n\nMIT\n\n\n[node.js]:http://nodejs.org\n[Mongoose]:http://mongoosejs.com/\n[express]:http://expressjs.com',
+28 silly publish   readmeFilename: 'README.md',
+28 silly publish   gitHead: '259cebed648d3c069811a5caef4d62721e3d85f8',
+28 silly publish   _id: 'mongoose-generic-api@0.0.1',
+28 silly publish   _shasum: '201ef420fa68b9b994171c663333a720de2b0a68',
+28 silly publish   _from: '.' }
+29 error need auth auth and email required for publishing
+29 error need auth You need to authorize this machine using `npm adduser`
+30 error System Darwin 14.0.0
+31 error command "node" "/usr/local/bin/npm" "publish"
+32 error cwd /Users/pavelrapoport/GitHub/mongoose-generic-api
+33 error node -v v0.10.32
+34 error npm -v 1.4.28
+35 error code ENEEDAUTH
+36 verbose exit [ 1, true ]

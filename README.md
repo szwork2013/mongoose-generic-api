@@ -1,6 +1,6 @@
 # Mongoose Generic API
 
-Automatically creates [Express] RESTful API service by [Mongoose] schemas and generates.
+Automatically creates [Express] RESTful API service by [Mongoose] schemas.
 
 ### Version
 0.0.1
@@ -16,13 +16,8 @@ The project uses a number of open source projects to work properly:
 ### Installation
 First you need to download and install [node.js].
 
-You need Gulp installed globally:
 
-```sh
-$ npm i -g gulp
-```
-
-```sh
+```sh	
 $ npm i
 ```
 
@@ -31,10 +26,6 @@ Server API tests
 ```sh
 $ mocha
 ```
-
-### Todo's
-
- - Write Tests
 
 License
 ----
