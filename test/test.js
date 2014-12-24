@@ -50,9 +50,11 @@ before(function(done) {
     /******************
      * Connecting to mongo and starting server
      ******************/
-    mongoose.connect("mongodb://localhost:27017/test", function() {
+    mongoose.connect("mongodb://localhost:27017/test", function(err) {
 
-        console.log('Mongo connected');
+        console.log('Connecting to mongodb');
+
+        if (err) console.log('Connection error:', err);
 
         app.listen(3000, function() {
 
